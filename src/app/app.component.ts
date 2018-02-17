@@ -1,3 +1,4 @@
+import { LoginService } from './login.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'app';
+  login$;
+  constructor(private LoginService: LoginService) {}
+
+  login() {
+    this.login$ = this.LoginService.login();
+  }
 }
