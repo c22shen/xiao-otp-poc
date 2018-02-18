@@ -10,6 +10,7 @@ import { MaterialModule } from './material/material.module';
 import { FormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SidenavService } from './sidenav.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     // Flex-layout
     FlexLayoutModule
   ],
-  providers: [LoginService],
+  providers: [
+    LoginService,
+    SidenavService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

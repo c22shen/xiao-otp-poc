@@ -8,8 +8,10 @@
   </mat-toolbar>
 
   <mat-sidenav-container fxFlex fxLayout="row">
-    <mat-sidenav mode="side" opened>
-      Sidenav
+    <mat-sidenav mode="over" [(opened)]="openeSidenav">
+      Sidenav {{openeSidenav}}
+      <button mat-button (click)="confirmOTP()">OTP Confirm</button>
+
     </mat-sidenav>
     <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
       <button mat-button (click)="login()">

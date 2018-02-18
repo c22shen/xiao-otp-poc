@@ -1,4 +1,5 @@
 import { LoginService } from './login.service';
+import { SidenavService } from './sidenav.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,9 +9,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   login$;
-  constructor(private LoginService: LoginService) {}
+  public openeSidenav = false;
+  constructor(
+    private LoginService: LoginService,
+    private SidenavService : SidenavService
+  
+  ) {
+    SidenavService.visibilityAnnounced$.subscribe(
+      visibility => {
+        this.openeSidenav = visibility;
+      });
+  }
+
 
   login() {
     this.login$ = this.LoginService.login();
+  }
+
+  public confirmOTP() {
+    this.SidenavService.setOTP("Confirmed");
   }
 }

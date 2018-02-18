@@ -1,37 +1,39 @@
 import { HttpClient } from '@angular/common/http';
 import {Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
+import { SidenavService } from './sidenav.service';
 
 import 'rxjs/add/operator/retry'
 import 'rxjs/add/operator/retryWhen'
 import 'rxjs/add/operator/mergeMap'
 import 'rxjs/add/operator/delay'
 import 'rxjs/add/observable/throw'
-import 'rxjs/add/observable/of'
+import 'rxjs/add/operator/take'
+import 'rxjs/add/operator/concat'
+import "rxjs/add/observable/of";
 
 @Injectable()
 export class LoginService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient, 
+    private sidenav: SidenavService
+  ) {}
 
   login(): Observable<Object> {
     return this.http
     .get('/assets/data/login1.json')
-    .retryWhen(err => {
-      return err.flatMap((err) => {
-        console.log(err);
-
-
-        if (true) {
-          return Observable.of(err);
-        }
-      }
-
-      )
-
-    })
-  }
-
-
-
-}
+    .retryWhen((errors) => {
+      return errors
+            .mergeMap((error) => {
+              console.log(error, error);
+              if (error.status ===  404) {
+                this.sidenav.setVisibility(true);
+                return this.sidenav.otpStateAnnounced$;
+              } else {
+                return Observable.throw(error);
+              }
+            })
+          })
+      }  
+    }
