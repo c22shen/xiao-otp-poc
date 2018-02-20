@@ -7,7 +7,9 @@ import {
   MatProgressSpinnerModule, 
   MatCardModule, 
   MatSidenavModule,
-  MatDialogModule 
+  MatDialogModule, 
+  MatOptionModule,
+  MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -20,6 +22,8 @@ import {
     MatCardModule,
     MatSidenavModule,
     MatDialogModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   exports: [
     MatButtonModule, 
@@ -28,7 +32,9 @@ import {
     MatProgressSpinnerModule, 
     MatCardModule,
     MatSidenavModule,
-    MatDialogModule 
+    MatDialogModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   declarations: []
 })
