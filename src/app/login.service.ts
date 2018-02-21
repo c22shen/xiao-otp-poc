@@ -21,6 +21,7 @@ export class LoginService {
   ) {}
 
   login(): Observable<Object> {
+    console.log("login function");
     return this.http
     .get('/assets/data/login1.json')
     .retryWhen((errors) => {

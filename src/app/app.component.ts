@@ -23,6 +23,7 @@ export class AppComponent {
 
 
   login() {
+    console.log("I'm in");
     this.login$ = this.LoginService.login();
   }
 

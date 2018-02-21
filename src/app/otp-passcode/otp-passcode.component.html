@@ -1,3 +1,10 @@
-<p>
-  otp-passcode works!
-</p>
+<h1>Extra Layer of Security</h1>
+<button mat-button>close<i class="material-icons">close</i></button>
+<h3>To proceed please enter 6-digit code you've just received.</h3>
+
+<form [formGroup]="rForm" (ngSubmit)="confirmPasscode(rForm.value)">
+  <mat-form-field>
+    <input formControlName="passcode" matInput placeholder="6 digit passcode">
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit" value ="submit" [disabled]="!rForm.valid">Submit</button>
+</form>
