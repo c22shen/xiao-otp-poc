@@ -28,17 +28,17 @@ export class LoginService {
     console.log("login function");
     return this.http
     .get('/assets/data/login1.json')
-    .retryWhen((errors) => {
-      return errors
-            .mergeMap((error) => {
-              console.log(error, error);
-              if (error.status ===  404) {
-                this.sidenav.setVisibility(true);
-                return this.sidenav.otpStateAnnounced$;
-              } else {
-                return Observable.throw(error);
-              }
-            })
-          })
+    // .retryWhen((errors) => {
+    //   return errors
+    //         .mergeMap((error) => {
+    //           console.log(error, error);
+    //           if (error.status ===  404) {
+    //             this.sidenav.setVisibility(true);
+    //             return this.sidenav.otpStateAnnounced$;
+    //           } else {
+    //             return Observable.throw(error);
+    //           }
+    //         })
+    //       })
       }  
     }

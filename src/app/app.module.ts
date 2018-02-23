@@ -11,11 +11,15 @@ import {
   FormsModule,
   ReactiveFormsModule 
 } from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SidenavService } from './sidenav.service';
 import { OtpChannelComponent } from './otp-channel/otp-channel.component';
 import { OtpPasscodeComponent } from './otp-passcode/otp-passcode.component';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { HttpInterceptorService } from './http.interceptor';
+
+
 
 import { StoreModule } from '@ngrx/store';
 import { otpReducer } from './otp.reducer';
@@ -44,7 +48,8 @@ import { OtpService } from './otp.service';
   providers: [
     LoginService,
     OtpService,
-    SidenavService
+    SidenavService,
+    { provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }
   ],
   bootstrap: [AppComponent]
 })
