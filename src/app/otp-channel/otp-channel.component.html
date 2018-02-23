@@ -1,12 +1,12 @@
 <h1>Extra Layer of Security</h1>
 <button mat-button>close<i class="material-icons">close</i></button>
 <h3>Please select your 2-factor authentication method</h3>
-
+<button mat-raised-button color="primary" (click)="confirmChannel()">getChannels</button>
 <form [formGroup]="rForm" (ngSubmit)="confirmChannel(rForm.value)">
   <mat-form-field>
     <mat-select placeholder="Channels" formControlName="channel">
-      <mat-option *ngFor="let key of objectKeys(channelSelection)" [value]="key">
-        {{ channelSelection[key] }}
+      <mat-option *ngFor="let channel of channels$|async" [value]="channel">
+        {{ channel }}
 
       </mat-option>
     </mat-select>

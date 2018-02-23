@@ -17,6 +17,11 @@ import { SidenavService } from './sidenav.service';
 import { OtpChannelComponent } from './otp-channel/otp-channel.component';
 import { OtpPasscodeComponent } from './otp-passcode/otp-passcode.component';
 
+import { StoreModule } from '@ngrx/store';
+import { otpReducer } from './otp.reducer';
+import { OtpService } from './otp.service';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,10 +38,12 @@ import { OtpPasscodeComponent } from './otp-passcode/otp-passcode.component';
     ReactiveFormsModule,
 
     // Flex-layout
-    FlexLayoutModule
+    FlexLayoutModule,
+    StoreModule.forRoot({ otp: otpReducer})
   ],
   providers: [
     LoginService,
+    OtpService,
     SidenavService
   ],
   bootstrap: [AppComponent]

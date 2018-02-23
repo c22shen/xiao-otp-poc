@@ -10,7 +10,7 @@ import 'rxjs/add/operator/delay'
 import 'rxjs/add/observable/throw'
 import 'rxjs/add/operator/take'
 import 'rxjs/add/operator/concat'
-import "rxjs/add/observable/of";
+import 'rxjs/add/observable/of'
 
 @Injectable()
 export class LoginService {
@@ -19,6 +19,10 @@ export class LoginService {
     private http: HttpClient, 
     private sidenav: SidenavService
   ) {}
+
+
+
+
 
   login(): Observable<Object> {
     console.log("login function");
