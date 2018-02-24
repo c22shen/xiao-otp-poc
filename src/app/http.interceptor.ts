@@ -20,14 +20,14 @@ export class HttpInterceptorService implements HttpInterceptor {
     constructor(private sidenav: SidenavService) {}
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         console.log('processing request', request);
-
+        // request = request.clone({ responseType: 'text' });
         return next
         .handle(request)
         .retryWhen((errors) => {
             return errors
                   .mergeMap((error) => {
-                    console.log(error, error);
-                    if (error.status ===  404) {
+                      console.log("error is", error);
+                    if (error.status ===  401 && error.error.error ===  "GTW_AUTH_CHALLENGE") {
                       this.sidenav.setVisibility(true);
                       return this.sidenav.otpStateAnnounced$;
                     } else {

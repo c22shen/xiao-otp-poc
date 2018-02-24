@@ -9,30 +9,17 @@ import { OtpService } from '../otp.service';
 })
 export class OtpChannelComponent implements OnInit {
   rForm: FormGroup;
-  // objectKeys = Object.keys;
-  channel:string = '';
+  objectKeys = Object.keys;
+  // channel:string = '';
   channels$;
   constructor(private fb: FormBuilder, private otpService: OtpService) { 
     this.rForm = fb.group({
       'channel' : [null, Validators.required],
     });
   }
-  // channelSelection = {
-  //     "primaryPhone": "******0597",
-  //     "alternatePhone": "******3082",
-  //     "email": "K*************I@CAPGEMINI.COM"
-  // }
 
 
-  channelSelection = [
-    "******0597",
-    "******3082",
-    "K*************I@CAPGEMINI.COM"
-  ]
-
-
-
-  confirmChannel(channel) {
+  confirmChannel(chanel) {
     console.log("Channel Submitted");
     this.channels$ = this.otpService.getChannels();
   }

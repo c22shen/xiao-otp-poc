@@ -18,11 +18,13 @@
       <button mat-button (click)="login()">
         Login
       </button>
-      <ul>
-        <li *ngFor="let person of login$ | async">
-        {{person.name}}
-        </li>
-      </ul>
+      <!-- <ul> -->
+        <!-- <li *ngFor="let person of login$ | async"> -->
+        <p>
+          {{loginafter$ | async}}
+        </p>
+          <!-- </li>
+      </ul> -->
 
       <app-otp-passcode></app-otp-passcode>
 

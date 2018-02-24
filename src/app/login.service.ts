@@ -27,7 +27,7 @@ export class LoginService {
   login(): Observable<Object> {
     console.log("login function");
     return this.http
-    .get('/assets/data/login1.json')
+    .post('/api/login',{})
     // .retryWhen((errors) => {
     //   return errors
     //         .mergeMap((error) => {
