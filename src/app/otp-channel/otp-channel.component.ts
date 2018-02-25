@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { OtpService } from '../otp.service';
+import { OtpChannel } from '../otp-channel.model';
 
 @Component({
   selector: 'app-otp-channel',
@@ -8,9 +9,9 @@ import { OtpService } from '../otp.service';
   styleUrls: ['./otp-channel.component.scss']
 })
 export class OtpChannelComponent implements OnInit {
+  @Input() channelList: OtpChannel;
   rForm: FormGroup;
   objectKeys = Object.keys;
-  // channel:string = '';
   channels$;
   constructor(private fb: FormBuilder, private otpService: OtpService) { 
     this.rForm = fb.group({
@@ -18,13 +19,9 @@ export class OtpChannelComponent implements OnInit {
     });
   }
 
-
-  confirmChannel(chanel) {
-    console.log("Channel Submitted");
-    this.channels$ = this.otpService.getChannels();
+  generateOtp(channelSelected) {
+    this.channels$ = this.otpService.generateOtp(channelSelected);
   }
-
-
 
 
   ngOnInit() {

@@ -26,7 +26,7 @@ export class GetChannels implements Action {
   
 export class GetChannelsSuccess implements Action {
     readonly type = GET_CHANNELS_SUCCESS;
-    constructor(public payload?: any) {}
+    constructor(public payload: OtpChannel) {}
 }
 
 // Show Error Message

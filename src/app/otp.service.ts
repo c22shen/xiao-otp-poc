@@ -13,11 +13,21 @@ export class OtpService {
     private http: HttpClient
   ){}
 
-   getChannels(): Observable<OtpChannel> {
-    console.log("getChannels function");
-    return this.http
-    .post<OtpChannel>("/api/userchannels", {})
+  
+	// { 
+  //   "userName":"0000009805894"
+  // }
 
+
+   getChannels(): Observable<OtpChannel> {
+    return this.http
+    .post<OtpChannel>("/api/userchannels", {});
+  }
+
+  generateOtp(channelSelected): Observable<any> {
+    console.log(channelSelected);
+    return this.http
+    .post<any>("/api/generateotp", channelSelected);
   }
 
 

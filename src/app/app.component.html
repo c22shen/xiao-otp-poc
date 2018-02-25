@@ -9,26 +9,15 @@
 
   <mat-sidenav-container fxFlex fxLayout="row">
     <mat-sidenav mode="over" [(opened)]="openeSidenav">
-      Sidenav {{openeSidenav}}
-      <app-otp-channel></app-otp-channel>
-      <button mat-button (click)="confirmOTP()">OTP Confirm</button>
-
+      <app-otp-channel [channelList]= "channelList$ | async"></app-otp-channel>
     </mat-sidenav>
     <div class="content" fxLayout="row" fxLayout.sm="column" fxLayoutGap="16px">
       <button mat-button (click)="login()">
         Login
       </button>
-      <!-- <ul> -->
-        <!-- <li *ngFor="let person of login$ | async"> -->
         <p>
           {{loginafter$ | async}}
         </p>
-          <!-- </li>
-      </ul> -->
-
-      <app-otp-passcode></app-otp-passcode>
-
-
     </div>
   </mat-sidenav-container>
 

@@ -13,21 +13,21 @@ export function otpReducer(state: Otp = defaultOtp, action: Action) {
         case OtpActions.GET_CHANNELS:
             return { ...state, otpChannels: action.payload};
         case OtpActions.GET_CHANNELS_FAILURE:
-            return {...state, error: "Channel Retrieval Failed"};
+            return {...state, step: -1, error: action.payload};
         case OtpActions.GET_CHANNELS_SUCCESS:
-            return {...state, step: 0};
+            return {...state, step: 0, otpChannels: action.payload};
         case OtpActions.GEN_OTP:
             return state;
         case OtpActions.GEN_OTP_FAILURE:
-            return {...state, error: "Submit Channel Failed"};
+            return {...state, step: -1, error: action.payload};
         case OtpActions.GEN_OTP_SUCCESS:
             return {...state, step: 1};
         case OtpActions.VALIDATE_OTP:
             return state;
         case OtpActions.VALIDATE_OTP_FAILURE:
-            return {...state, error: "Validate otp Code Failed"};
+            return {...state, step: -1, error: action.payload};
         case OtpActions.VALIDATE_OTP_SUCCESS:
-            return {...state, step: null};
+            return {...state};
         case OtpActions.CHANNEL_RESELECT:
             return {...state, step: 0}
         default:
