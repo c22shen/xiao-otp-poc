@@ -19,12 +19,13 @@ import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common
 
 import { HttpInterceptorService } from './http.interceptor';
 
+import { EffectsModule }             from '@ngrx/effects';
+import { StoreModule }               from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-
-import { StoreModule } from '@ngrx/store';
 import { otpReducer } from './otp.reducer';
 import { OtpService } from './otp.service';
-
+import { OtpEffects } from './otp.effects';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,17 @@ import { OtpService } from './otp.service';
 
     // Flex-layout
     FlexLayoutModule,
-    StoreModule.forRoot({ otp: otpReducer})
+
+    EffectsModule.forRoot([
+      OtpEffects
+    ]),
+
+    StoreModule.forRoot({
+       otp: otpReducer
+      }),
+    StoreDevtoolsModule.instrument({
+        maxAge: 10 // number of states to retain
+      })
   ],
   providers: [
     LoginService,

@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
-
-export interface Channel {
-  type: string;
-}
+import { OtpChannel } from './otp-channel.model';
 
 
 @Injectable()
@@ -16,10 +13,10 @@ export class OtpService {
     private http: HttpClient
   ){}
 
-   getChannels(): Observable<Channel[]> {
+   getChannels(): Observable<OtpChannel> {
     console.log("getChannels function");
     return this.http
-    .post<Channel[]>("/api/userchannels", {})
+    .post<OtpChannel>("/api/userchannels", {})
 
   }
 
